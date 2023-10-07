@@ -3,13 +3,16 @@ version: "3.8"
 services:
   catalog-service:
     depends_on:
-      - polar_postgres
-    image: "catalog-service:0.0.1-SNAPHOT"
+      - polar-postgres
+    image: "catalog-service:0.0.1-SNAPSHOT"
     container_name: "catalog-service"
     ports:
       - 8080:8080
+      - 8001:8001
     environment:
       - BPL_JVM_THREAD_COUNT=50
+      - BPL_DEBUG_ENABLE=true
+      - BPL_DEBUG_PORT=8001
       - SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog
       - SPRING_PROFILES_ACTIVE=testdata
   
